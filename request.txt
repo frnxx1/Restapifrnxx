@@ -1,0 +1,26 @@
+//создание
+curl http://localhost:8080/albums \
+    --include \
+    --header "Content-Type: application/json" \
+    --request "POST" \
+    --data '{"id": "4","title": "The Modern Sound of Betty Carter","artist": "Betty Carter","price": 49.99}'
+
+###
+//вывод
+curl http://localhost:8080/albums
+
+###
+//поиск
+curl http://localhost:8080/albums/3
+
+###
+//удаление
+curl -X "DELETE" http://localhost:8080/albums/4
+
+###
+//обновление
+curl -X "PUT" http://localhost:8080/albums/2 \
+    --include \
+    --header "Content-Type: application/json" \
+    --request "PUT" \
+    --data '{"title": "loop"}'
