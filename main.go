@@ -29,13 +29,7 @@ func getAlbums(c *gin.Context) {
 }
 
 func main() {
-	router := gin.Default()
-	router.GET("/albums", getAlbums)
-	router.GET("/albums/:id", getAlbumId)
-	router.DELETE("/albums/:id", deleteAlbumId)
-	router.PUT("/albums/:id", updateAlbumId)
-	router.POST("/albums", postAlbums)
-
+	router := GetRouter()
 	router.Run("localhost:8080")
 
 }
@@ -47,7 +41,6 @@ func postAlbums(c *gin.Context) {
 		c.IndentedJSON(http.StatusBadRequest, error{"Bad request"})
 		return
 	}
-
 	albums = append(albums, newAlbums)
 	c.IndentedJSON(http.StatusCreated, newAlbums)
 }
@@ -61,7 +54,7 @@ func getAlbumId(c *gin.Context) {
 			return
 		}
 	}
-	
+
 	c.IndentedJSON(http.StatusNotFound, error{"not found"})
 }
 
@@ -89,4 +82,15 @@ func deleteAlbumId(c *gin.Context) {
 		}
 	}
 	c.IndentedJSON(http.StatusNotFound, error{"not found"})
+
+}
+
+func GetRouter() *gin.Engine {
+	router := gin.Default()
+	router.GET("/albums", getAlbums)
+	router.GET("/albums/:id", getAlbumId)
+	router.DELETE("/albums/:id", deleteAlbumId)
+	router.PUT("/albums/:id", updateAlbumId)
+	router.POST("/albums", postAlbums)
+	return router
 }

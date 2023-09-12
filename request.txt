@@ -11,7 +11,7 @@ curl http://localhost:8080/albums
 
 ###
 //поиск
-curl http://localhost:8080/albums/3
+curl http://localhost:8080/albums/2
 
 ###
 //удаление
